@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aradhana for Android</title>
+<meta property="og:title" content="Aradhana for Android">
+<meta property="og:description" content="The latest Aradhana app for Android phones.">
+<meta property="og:image" content="/icon.png">
+<link rel="icon" href="/icon.png">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<img src="/icon.png" alt="">
+<h1>Aradhana for Android</h1>
+<p>The latest build, always at this link. Download it, open it, and allow your browser to install apps if asked. It installs over the one you have.</p>
+<a class="open" href="https://github.com/AnoopamMission/AnoopamMission.github.io/releases/download/android/aradhana.apk">Download</a>
+<p id="when"></p>
+<script>
+  // The release's own date says how fresh the download is.
+  fetch('https://api.github.com/repos/AnoopamMission/AnoopamMission.github.io/releases/tags/android')
+    .then((r) => r.json())
+    .then(({ assets }) => {
+      const at = new Date(assets.find((a) => a.name === 'aradhana.apk').updated_at);
+      document.getElementById('when').textContent = `Updated ${at.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}`;
+    })
+    .catch(() => {});
+</script>
+</body>
+</html>
