@@ -1,0 +1,19 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["M27CXY35G9.org.anoopam.aradhana"],
+        "components": [
+          { "/": "/bhajan/*" },
+          { "/": "/track/*" },
+          { "/": "/album/*" },
+          { "/": "/list/*" },
+          { "/": "/person/*" },
+          { "/": "/series/*" },
+          { "/": "/brahmanirzar/*" },
+          { "/": "/vachanamrut/*" }
+        ]
+      }
+    ]
+  }
+}

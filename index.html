@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aradhana · Anoopam Mission</title>
+<meta property="og:title" content="Aradhana · Anoopam Mission">
+<meta property="og:description" content="Bhajans, kirtans and pravachans. Open this in the Aradhana app.">
+<meta property="og:image" content="/icon.png">
+<link rel="icon" href="/icon.png">
+<style>
+  body { margin: 0; min-height: 100vh; box-sizing: border-box; padding: 24px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 16px; text-align: center; color: #2A1D14;
+    font-family: Manrope, system-ui, -apple-system, "Noto Sans Gujarati", sans-serif;
+    background: linear-gradient(135deg, #FFEEDC 0%, #FBF7EE 34%, #FBF7EE 66%, #EAF0F8 100%); }
+  img { width: 96px; height: 96px; border-radius: 22px; }
+  h1 { margin: 0; font-size: 26px; letter-spacing: -0.015em; }
+  p { margin: 0; max-width: 320px; color: #685446; font-size: 15px; line-height: 1.5; }
+  .open { margin-top: 8px; padding: 14px 28px; border-radius: 24px; background: #FE7200; color: #24170F;
+    font-size: 16px; font-weight: 700; text-decoration: none; }
+  @media (prefers-color-scheme: dark) {
+    body { color: #F7EFE4; background: linear-gradient(135deg, #4A2616 0%, #2A170F 38%, #140D0A 72%, #100B08 100%); }
+    p { color: #C9B9A8; }
+    .open { background: #FF8A1F; }
+  }
+</style>
+</head>
+<body>
+<img src="/icon.png" alt="">
+<h1>Aradhana</h1>
+<p>Bhajans, kirtans and pravachans from Anoopam Mission.<br>અનુપમ મિશનનાં ભજન, કીર્તન અને પ્રવચન.</p>
+<a class="open" id="open" href="aradhana://">Open in Aradhana</a>
+<p id="missing" hidden>Aradhana isn’t on this phone yet.</p>
+<script>
+  // Every shared path is the app's own (aradhana://bhajan/…); Android's intent link comes back here if the app is missing.
+  const path = location.pathname.slice(1) + location.search;
+  const back = encodeURIComponent(location.href.split('#')[0] + '#missing');
+  document.getElementById('open').href = /Android/i.test(navigator.userAgent)
+    ? `intent://${path}#Intent;scheme=aradhana;package=org.anoopam.aradhana;S.browser_fallback_url=${back};end`
+    : `aradhana://${path}`;
+  document.getElementById('missing').hidden = location.hash !== '#missing';
+</script>
+</body>
+</html>
