@@ -19,6 +19,8 @@
 <script>
   // Every shared path is the app's own (aradhana://bhajan/…); Android's intent link comes back here if the app is missing.
   const path = location.pathname.slice(1) + location.search;
+  // A mistyped download link (Slack can swallow a trailing * or .) still reaches the download.
+  if (/^android\b/.test(path)) location.replace('/android/');
   const back = encodeURIComponent(location.href.split('#')[0] + '#missing');
   document.getElementById('open').href = /Android/i.test(navigator.userAgent)
     ? `intent://${path}#Intent;scheme=aradhana;package=org.anoopam.aradhana;S.browser_fallback_url=${back};end`

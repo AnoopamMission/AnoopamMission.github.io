@@ -14,9 +14,11 @@
 <img src="/icon.png" alt="">
 <h1>Aradhana for Android</h1>
 <p>The latest build, always at this link. Download it, open it, and allow your browser to install apps if asked. It installs over the one you have.</p>
-<a class="open" href="https://github.com/AnoopamMission/AnoopamMission.github.io/releases/download/android/aradhana.apk">Download</a>
+<a class="open" id="apk" href="https://github.com/AnoopamMission/AnoopamMission.github.io/releases/download/android/aradhana.apk">Download</a>
 <p id="when"></p>
 <script>
+  // On Android the download starts at once; the button is there to start it again.
+  if (/Android/i.test(navigator.userAgent)) location.href = document.getElementById('apk').href;
   // The release's own date says how fresh the download is.
   fetch('https://api.github.com/repos/AnoopamMission/AnoopamMission.github.io/releases/tags/android')
     .then((r) => r.json())
