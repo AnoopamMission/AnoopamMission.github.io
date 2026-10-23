@@ -16,11 +16,17 @@
 <p>Bhajans, kirtans and pravachans from Anoopam Mission.<br>અનુપમ મિશનનાં ભજન, કીર્તન અને પ્રવચન.</p>
 <a class="open" id="open" href="aradhana://">Open in Aradhana</a>
 <p id="missing" hidden>Aradhana isn’t on this phone yet. <a href="/android/">Get it for Android</a></p>
+<p><a id="web" href="https://aradhana-web.vatsa-edge.workers.dev/">Or open it on the web</a></p>
 <script>
   // Every shared path is the app's own (aradhana://bhajan/…); Android's intent link comes back here if the app is missing.
   const path = location.pathname.slice(1) + location.search;
   // A mistyped download link (Slack can swallow a trailing * or .) still reaches the download.
   if (/^android\b/.test(path)) location.replace('/android/');
+  // The web app (webapp/) has the same paths: a laptop goes straight there. iPadOS calls itself a Mac, with touch.
+  const web = 'https://aradhana-web.vatsa-edge.workers.dev/' + path;
+  const phone = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || navigator.maxTouchPoints > 1;
+  if (!phone) location.replace(web);
+  document.getElementById('web').href = web;
   const back = encodeURIComponent(location.href.split('#')[0] + '#missing');
   document.getElementById('open').href = /Android/i.test(navigator.userAgent)
     ? `intent://${path}#Intent;scheme=aradhana;package=org.anoopam.aradhana;S.browser_fallback_url=${back};end`
